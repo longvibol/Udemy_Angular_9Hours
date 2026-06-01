@@ -1,0 +1,93 @@
+1-Create project 
+
+>> ng new angularBasics
+
+
+Link: https://angular.dev/tutorials
+
+
+2- start project
+
+>> ng serve -o
+
+
+3- Create component 
+
+>> ng generate component "name of the component"
+
+==> ng generate component product 
+
+or short cut 
+
+>> ng g c product 
+
+-------------------
+
+Explain concept:
+
+id: number | undefined;  // optional
+name!: string;           // required later
+price!: number;          // required later
+
+-------------------
+
+
+constructor = create
+ngOnInit = start work
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
