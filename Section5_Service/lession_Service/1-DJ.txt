@@ -1,0 +1,211 @@
+Has-A : relationship 
+
+Login Component -> Login Service -> HTTP (Server) 
+
+-------------------------------------------------
+Dependancy Injection : is the process of injection the dependency ដែលយើងមិនចាំបាច់ធ្វើខ្លួនឯងនោះទេ 
+យើងអាចអោយ Framwork Angular ធ្វើការហៅ service នឹងមកប្រើប្រាស់បាន​
+
+
+1- Register NgModule 
+
+2- Inject​ the service to the component 
+
+- ពេលដែលយើងដាក់ Inject to the contructor វានឹងបង្កើត single tone Object ( object ដែលមិនធ្វើការផ្លាស់ប្តូរ)
+
+-------------------------------
+
+Command create : service 
+
+>> ng g s services/countries
+
+PS C:\Users\home\Desktop\UdemyCourse\Udemy_Angular_9Hours\Section5_Service\softcode\countries> ng g s services/countries      
+CREATE src/app/services/countries.service.spec.ts (372 bytes)
+CREATE src/app/services/countries.service.ts (138 bytes)
+
+==> 
+
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CountriesService {
+
+  constructor() { }
+}
+
+
+---------------------------------------
+
+import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http'
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CountriesService {
+
+  constructor(private _httpClient:HttpClient) { }
+
+  public getCountries():any{
+    return this._httpClient.get("http://localhost:8080/api/countries");
+  }
+}
+
+
+- import {HttpClient} from '@angular/common/http' យើងធ្វើការ import HttpClient ដើម្បីប្រើប្រាស់ Rest Api, GET,POST,DEL,Update
+
+វាជា  Observable<Object>
+
+2- Create component 
+
+>>  ng g c components/countries
+
+
+-------------------
+
+
+import { Component, OnInit } from '@angular/core';
+import { CountriesService } from 'src/app/services/countries.service';
+
+@Component({
+  selector: 'app-countries',
+  templateUrl: './countries.component.html',
+  styleUrls: ['./countries.component.css']
+})
+export class CountriesComponent implements OnInit {
+
+  public data: any[] = [];
+
+  constructor(private _service: CountriesService) { }
+
+  ngOnInit(): void {
+    this._service.getCountries().subscribe((response: any[]) => {
+      this.data = response;
+    });
+  }
+
+}
+ 
+--------------------------
+
+
+1- import service : import { CountriesService } from 'src/app/services/countries.service';
+
+2- inject server : constructor(private _service: CountriesService) { }
+
+3- Create type: public data: any[] = [];
+
+4- lift cycle when start : 
+
+ngOnInit(): void {
+    this._service.getCountries().subscribe((response: any[]) => {
+      this.data = response;
+    });
+  }
+
+--------------------------------------------------------------
+
+5- handle error 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

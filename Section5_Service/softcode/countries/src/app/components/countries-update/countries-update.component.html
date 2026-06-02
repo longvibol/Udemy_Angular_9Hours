@@ -1,0 +1,39 @@
+<div class="page-container">
+  <div class="header">
+    <h1>Countries</h1>
+    <p>Explore country information from your API</p>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    Loading countries...
+  </div>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <div class="country-grid" *ngIf="!loading && data.length > 0">
+    <div class="country-card" *ngFor="let country of data">
+      <h2>{{ country.name }}</h2>
+
+      <p>
+        <strong>Capital:</strong>
+        {{ country.capital || 'N/A' }}
+      </p>
+
+      <p>
+        <strong>Region:</strong>
+        {{ country.region || 'N/A' }}
+      </p>
+
+      <p>
+        <strong>CallingCodes:</strong>
+        {{ country.callingCodes || 'N/A' }}
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && data.length === 0 && !errorMessage" class="empty">
+    No countries found.
+  </div>
+</div>
