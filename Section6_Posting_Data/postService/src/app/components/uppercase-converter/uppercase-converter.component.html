@@ -1,0 +1,9 @@
+<input type="text" [(ngModel)]="my_message" />
+
+<button (click)="convert({ message: my_message })">
+  Convert to Uppercase
+</button>
+
+<br>
+
+<h1 style="color: red">{{ result }}</h1>
