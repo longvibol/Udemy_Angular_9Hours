@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: countrylayer-api
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      indent-output: true
+
+countrylayer:
+  data-file: classpath:countries.json
+  security:
+    require-access-key: false
+    access-key: demo-key
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
