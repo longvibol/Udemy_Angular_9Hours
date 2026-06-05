@@ -1,0 +1,134 @@
+/* Container Heading */
+h1 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+/* The Responsive Grid Framework */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 10px 0;
+}
+
+/* Individual Product Card Layout */
+.product-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #eaeaea;
+}
+
+/* Card Hover Animations */
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Wrapper and Badges */
+.product-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background-color: #fafafa; /* Soft off-white */
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  /* Ensures the entire image scales down to fit the container without cutting off */
+  object-fit: contain; 
+  /* Adds a subtle padding so the image doesn't touch the very edges of the box */
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.product-category {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(44, 62, 80, 0.9);
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Details Section inside Card */
+.product-details {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-name {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.2rem;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  text-transform: capitalize;
+}
+
+.product-description {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+  /* Truncates extra long description text gracefully */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Price and Stock Layout Block */
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #f1f1f1;
+}
+
+.product-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2e7d32; /* Modern Green */
+}
+
+.product-stock {
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Custom class modifier for out-of-stock items */
+.product-stock.out-of-stock {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* Decorative Divider */
+.section-divider {
+  border: 0;
+  height: 1px;
+  background: #e0e0e0;
+  margin: 40px 0;
+}

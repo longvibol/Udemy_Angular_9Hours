@@ -1,0 +1,70 @@
+<h1>Product Catalog</h1>
+
+<div class="product-grid">
+  <div class="product-card" *ngFor="let prod of products">
+    
+    <div class="product-image-wrapper">
+    <img [src]="(prod.imageUrl && !prod.imageUrl.includes('http')) ? 'assets/' + prod.imageUrl : 'assets/iphone.webp'" 
+     [alt]="prod.name" 
+     class="product-image" />
+      <span class="product-category" *ngIf="prod.id">{{ prod.id }}</span>
+    </div>
+
+    <div class="product-details">
+      <h2 class="product-name">{{ prod.name }}</h2>
+      <p class="product-description">{{ prod.description }}</p>
+      
+      <div class="product-meta">
+        <span class="product-price">${{ prod.price | number:'1.2-2' }}</span>
+        <span class="product-stock" [class.out-of-stock]="!prod.stockQuantity">
+          {{ prod.stockQuantity ? prod.stockQuantity + ' left' : 'Out of Stock' }}
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<h1>Create Product</h1>
+Id:<input type="number" [(ngModel)]="id"/>
+Name:<input type="text" [(ngModel)]="name"/>
+Description:<input type="text" [(ngModel)]="description"/>
+Price:<input type="number" [(ngModel)]="price"/>
+Stock Quantity:<input type="number" [(ngModel)]="stockQuantity"/>
+<button (click)="createProduct({ 'id':id, 'name':name, 'description':description,'stockQuantity':stockQuantity, 'price':price })">Create Product</button>
+<h3>{{ createResponse | json }}</h3>
+
+<hr>
+
+<h1>Update Product</h1>
+Id: <input type="number" [(ngModel)]="id1"/>
+Name: <input type="text" [(ngModel)]="name1"/>
+Description: <input type="text" [(ngModel)]="description1"/>
+Price: <input type="number" [(ngModel)]="price1"/>
+
+<button (click)="updateProduct({ 
+  'id': id1, 
+  'name': name1, 
+  'description': description1, 
+  'price': price1,
+  'stockQuantity': 50,
+  'category': 'Electronics',
+  'imageUrl': 'https://placehold.co/600x400'
+})">Update Product</button>
+
+<h3>{{ updateResponse | json }}</h3>
+
+<hr>
+
+<h1>Fetch Product</h1>
+Id: <input type="number" [(ngModel)]="id2"/>
+<button (click)="getProduct(id2)">Get Product</button>
+<h3>{{ productResponse | json }}</h3>
+
+
+<h1>Delete Product</h1>
+Id: <input type="number" [(ngModel)]="id3"/>
+<button (click)="deleteProduct(id3)">Delete Product</button>
+<h3>{{ deleteResponse | json }}</h3>
