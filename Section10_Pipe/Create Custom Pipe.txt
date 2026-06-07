@@ -1,0 +1,36 @@
+Create Custom Pipe 
+
+>> ng g p pipes/reversepipe    
+
+CREATE src/app/pipes/reversepipe.pipe.spec.ts (207 bytes)
+CREATE src/app/pipes/reversepipe.pipe.ts (227 bytes)
+UPDATE src/app/app.module.ts (617 bytes)
+
+- it will update and add the app.module with our custome pipe : to the declaration 
+
+
+---------
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'reversepipe'
+})
+export class ReversepipePipe implements PipeTransform {
+
+  transform(input: string): string {
+    var data = "";
+
+    for(var i =0; i<input.length; i++){
+      data = input[i]+data;
+    }
+    return data;
+  }
+
+}
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+TS:
+
+import { Component } from '@angular/core';
+
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'vibolllong';
+  myDate: Date = new Date();
+  myMoney: number = 1200;
+  myObj={
+    name:'Vibol',
+    salary:5000
+  }
+  myNumber:number = 1234.56789;
+  stock:number = 3.5;
+  numbers:number[] = [10,20,30,40,50];
+
+  promiseData:any;
+  promiseWithAsyn:Promise<any>;
+
+  constructor(){
+    // this is called observable when it change we call .then
+    this.getPromise().then(v=>this.promiseData=v);
+
+    this.promiseWithAsyn = this.getPromiseWithAsyn();
+
+  }
+
+  getPromiseWithAsyn(){
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>resolve("Promise Response"), 3000);
+  });
+  }
+
+  getPromise(){
+    return new Promise((resolve,reject)=>{
+      setTimeout(()=>resolve("Promise Response"), 2000);
+    });
+  }
+}

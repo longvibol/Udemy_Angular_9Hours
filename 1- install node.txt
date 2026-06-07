@@ -4,7 +4,7 @@
 
 2- install Angular cli
 
->>npm install -g @angular/cli
+>>npm install -g @angular/cli@11.1.2
 
 
 node version v12.19.0
