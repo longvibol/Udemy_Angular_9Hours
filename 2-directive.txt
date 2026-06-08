@@ -1,0 +1,111 @@
+1- loog : *ngFor 
+
+- ts 
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.css']
+})
+export class ProductComponent implements OnInit {
+
+
+  products: {id: string, name: string}[];
+
+  // create constructor  
+  constructor() { 
+    this.products = [
+      {
+        id : "1",
+        name : "Mac Book Pro"
+      },
+      {
+        id : "2",
+        name : "Iphone"
+      }
+    ]
+  }
+
+  public getProducts(){
+    return this.products;
+  }
+
+  ngOnInit(): void {
+  }
+
+}
+
+Explain:
+
+- products: {id: string, name: string}[]; បង្កើត object Array and it have type inside 
+
++ html 
+
+Product Detail:
+<div *ngFor="let product of products">
+    <h1>{{product.id}}</h1>
+    <h1>{{product.name}}</h1>
+</div>
+
+or 
+
+Product Detail:
+<div *ngFor="let product of getProducts()">
+    <h1>{{product.id}}</h1>
+    <h1>{{product.name}}</h1>
+</div>
+
+----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

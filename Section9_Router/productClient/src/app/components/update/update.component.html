@@ -1,0 +1,18 @@
+<h1>Update Product</h1>
+Id: <input type="number" [(ngModel)]="id1"/>
+Name: <input type="text" [(ngModel)]="name1"/>
+Description: <input type="text" [(ngModel)]="description1"/>
+Stock Quantity: <input type="number" [(ngModel)]="stockQuantity1"/>
+Price: <input type="number" [(ngModel)]="price1"/>
+
+<button (click)="updateProduct({ 
+  'id': id1, 
+  'name': name1, 
+  'description': description1, 
+  'price': price1,
+  'stockQuantity': stockQuantity1,
+  'category': 'Electronics',
+  'imageUrl': 'https://placehold.co/600x400'
+})">Update Product</button>
+
+<h3>{{ updateResponse | json }}</h3>

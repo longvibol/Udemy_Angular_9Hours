@@ -1,0 +1,93 @@
+
+<h3>Customer Pipe</h3>
+<h3>{{'Hello' | reversepipe | uppercase}}</h3>
+
+<hr>
+
+<h3>Promise after 2 second it will return the data</h3>
+<h3>{{promiseData}}</h3>
+
+<h3>Using Pipe | asynce to handle promise</h3>
+<h3>{{promiseWithAsyn | async}}</h3>
+
+<hr>
+
+<h3> Pipes Slice : {{numbers}}</h3>
+<h3> Pipes Slice Rang slice:2:4 = {{numbers | slice:2:4}}</h3>
+<h3> Pipes Slice Rang slice:1:-1 = {{numbers | slice:1:-1}}</h3>
+<h3>For With Slice</h3>
+<b *ngFor="let v of numbers | slice:2">  {{v}} <br></b>
+
+<hr>
+
+<h3> Pipes Percentage : {{stock}}</h3>
+<h3> Pipes Percentage : {{stock | percent}}</h3>
+<h3> Pipes Percentage : {{stock | percent:'3.2-2'}}</h3>
+
+<hr>
+
+<h2>Angular Number Pipe Examples</h2>
+
+<!-- Original Number -->
+<h3>Original Number : {{ myNumber }}</h3>
+
+<!-- Minimum Integer Digits -->
+<h3>Minimum 2 Integer Digits (2.0-0) :
+    {{ myNumber | number:'2.0-0' }}
+</h3>
+
+<!-- Exactly 2 Decimal Digits -->
+<h3>Exactly 2 Decimal Digits (1.2-2) :
+    {{ myNumber | number:'1.2-2' }}
+</h3>
+
+<!-- 1 to 3 Decimal Digits -->
+<h3>1 to 3 Decimal Digits (1.1-3) :
+    {{ myNumber | number:'1.1-3' }}
+</h3>
+
+<!-- Your Example -->
+<h3>Minimum 2 Integer Digits, 1 to 3 Decimals (2.1-3) :
+    {{ myNumber | number:'2.1-3' }}
+</h3>
+
+<!-- No Decimal Places -->
+<h3>No Decimal Places (1.0-0) :
+    {{ myNumber | number:'1.0-0' }}
+</h3>
+
+<!-- Pad Integer Digits -->
+<h3>Minimum 5 Integer Digits, Exactly 2 Decimals (5.2-2) :
+    {{ myNumber | number:'5.2-2' }}
+</h3>
+
+<!-- Up to 5 Decimal Digits -->
+<h3>Up to 5 Decimal Digits (1.0-5) :
+    {{ myNumber | number:'1.0-5' }}
+</h3>
+
+<hr>
+
+<h3> Pipes JSON : {{myObj | json}}</h3>
+
+<hr>
+
+<h3> Pipes currency Dollar : {{myMoney | currency}}</h3>
+<h3> Pipes currency Euro : {{myMoney | currency:'GBP'}}</h3>
+<h3> Pipes currency Khmer : {{myMoney | currency:'KHR'}}</h3>
+
+<hr>
+
+<h3> Pipes Date : {{myDate}}</h3>
+<h3> Pipes Date : {{myDate | date:'dd-MM-yy'}}</h3>
+<h3> Pipes Date : {{myDate | date:'MMM-dd-yyyy'}}</h3>
+<h3> Pipes Date : {{myDate | date:'shortDate'}}</h3>
+<h3> Pipes Date : {{myDate | date:'mediumDate'}}</h3>
+<h3> Pipes Date : {{myDate | date:'fullDate'}}</h3>
+
+<hr>
+
+<h3> Pipes Text : {{title}}</h3>
+<h3>{{ title | uppercase }}</h3>
+<h3>{{ title | titlecase }}</h3>
+<h3>{{ title | lowercase }}</h3>

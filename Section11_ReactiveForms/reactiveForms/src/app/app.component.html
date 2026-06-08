@@ -1,0 +1,55 @@
+<h1 class="display-4 text-center">Reactive Forms</h1>
+
+<div class="container">
+  <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+
+    <div>
+      <label>Frist Name</label>
+      <input type="text" class="form-control" formControlName="firstName">
+    </div>
+
+    <div>
+      <label>Last Name</label>
+      <input type="text" class="form-control" formControlName="lastName">
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input type="text" class="form-control" formControlName="email">
+    </div>
+
+    <div>
+      <label>Gender</label><br>
+      <input type="radio" value="male" formControlName="gender">Male
+      <input type="radio" value="female" formControlName="gender">Female
+    </div>
+
+    <div class="form-group" formGroupName="address">
+      <h4 class="display-5 text-center">Address</h4>
+      <div class="form-group">
+        <label>Street</label>
+        <input type="text" class="form-control" formControlName="street">
+      </div>
+
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" class="form-control" formControlName="city">
+      </div>
+
+      <div class="form-group">
+        <h4 class="display-6">Chose Country</h4>
+        <select class="form-control" formControlName="country">
+          <option value="USA">USA</option>
+          <option value="Canada">Canada</option>
+          <option value="UK">UK</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <input type="submit" class="btn btn-success" value="Submit">
+    </div>
+
+  </form>
+
+</div>

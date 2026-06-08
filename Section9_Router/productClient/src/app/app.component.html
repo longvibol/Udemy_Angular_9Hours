@@ -1,0 +1,33 @@
+<h1>Product Catalog</h1>
+
+<div class="product-grid">
+  <div class="product-card" *ngFor="let prod of products">
+    
+    <div class="product-image-wrapper">
+    <img [src]="(prod.imageUrl && !prod.imageUrl.includes('http')) ? 'assets/' + prod.imageUrl : 'assets/iphone.webp'" 
+     [alt]="prod.name" 
+     class="product-image" />
+      <span class="product-category" *ngIf="prod.id">{{ prod.id }}</span>
+    </div>
+
+    <div class="product-details">
+      <h2 class="product-name">{{ prod.name }}</h2>
+      <p class="product-description">{{ prod.description }}</p>
+      
+      <div class="product-meta">
+        <span class="product-price">${{ prod.price | number:'1.2-2' }}</span>
+        <span class="product-stock" [class.out-of-stock]="!prod.stockQuantity">
+          {{ prod.stockQuantity ? prod.stockQuantity + ' left' : 'Out of Stock' }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>Router Link</h3>
+<a [routerLink]="'/create'"]> Create Product</a><br>
+<a [routerLink]="'/update'"]> Update Product</a><br>
+<a [routerLink]="'/fetch'"]> Fetch Product</a><br>
+<a [routerLink]="'/delete'"]> Delete Product</a><br>
+
+<router-outlet></router-outlet>

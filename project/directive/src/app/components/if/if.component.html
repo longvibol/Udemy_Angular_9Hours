@@ -1,0 +1,88 @@
+<!-- 1. Basic true -->
+<b *ngIf="true">
+  You are the creator of your destination
+</b>
+<br><br>
+
+<!-- 2. Logic condition -->
+<b *ngIf="x < y">
+  x is smaller than y
+</b>
+<br><br>
+
+<!-- 3. String comparison -->
+<b *ngIf="s == 'hello'">
+  Success
+</b>
+<br><br>
+
+<!-- 4. Using function -->
+<b *ngIf="myFun()">
+  Using a function
+</b>
+<br><br>
+
+<!-- 5. Boolean variable -->
+<b *ngIf="isLoggedIn">
+  Welcome User
+</b>
+<br><br>
+
+<!-- 6. Multiple condition AND -->
+<b *ngIf="x < y && s == 'hello'">
+  AND condition success
+</b>
+<br><br>
+
+<!-- 7. Multiple condition OR -->
+<b *ngIf="x > y || s == 'hello'">
+  OR condition success
+</b>
+<br><br>
+
+<!-- 8. if else -->
+<div *ngIf="isLoggedIn; else logoutBlock">
+  Login Success
+</div>
+
+<ng-template #logoutBlock>
+  Login Failed
+</ng-template>
+
+<br>
+
+<!-- 9. if then else -->
+<div *ngIf="marks >= 50; then passBlock else failBlock"></div>
+
+<ng-template #passBlock>
+  <b>PASS</b>
+</ng-template>
+
+<ng-template #failBlock>
+  <b>FAIL</b>
+</ng-template>
+
+<br>
+
+<!-- 10. Toggle example -->
+<button (click)="toggleLogin()">
+  Toggle Login
+</button>
+
+<div *ngIf="isLoggedIn">
+  User Logged In
+</div>
+
+<br>
+
+<!-- 11. Check array -->
+<div *ngIf="users.length > 0">
+  User list available
+</div>
+
+<br>
+
+<!-- 12. ngIf as -->
+<div *ngIf="users.length as total">
+  Total Users: {{total}}
+</div>

@@ -1,0 +1,74 @@
++ Easy memory
+
+Input = data goes IN to child component : បោះតម្លៃពី​ Parent to Child 
+Parent gives something to child. 
+
+Output = message/event comes OUT from child component : រង់ចាំមាន ព្រឹតិការអីកើតឡើង វានឹង បោះតម្លៃនឹងទៅក្នុងវិញ
+Child tells parent something happened. កូនអ្នកប្រាប់ទៅ Parent 
+
+-----------------------------
+
+
+Parent = bigger component
+Child  = smaller component used inside parent
+
+Ex
+
+AppComponent = parent
+ProductComponent = child
+
+យើងយក ProductComponent ដាក់ចូល AppComponent
+
+
+Easy memory :
+
+Parent holds child.
+Parent uses child.
+Child lives inside parent.
+
+
+================================
+
+[ ] = INPUT / property binding
+( ) = OUTPUT / event binding
+{{ }} = show value on screen
+
+
+or 
+
+[ ]     = property binding / input value
+( )     = event binding / action happened
+{{ }}   = interpolation / show value
+
+
+[ ]  = give value to HTML
+( )  = listen to user action
+{{ }} = print/show value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
