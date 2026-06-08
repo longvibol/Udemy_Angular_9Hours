@@ -8,6 +8,12 @@ import { ProductDataService } from 'src/app/services/product-data.service';
 })
 export class CreateComponent implements OnInit {
 
+  id!: number;
+  name!: string;
+  description!: string;
+  price!: number;
+  stockQuantity!: number;
+
   createResponse: any;
 
   constructor(private _service: ProductDataService) { }
@@ -20,6 +26,7 @@ export class CreateComponent implements OnInit {
     this._service.create(product).subscribe((res:any)=>{
       this.createResponse = res;
       console.log("Product created successfully:", this.createResponse);
+      
     });
   }
 

@@ -8,6 +8,12 @@ import { ProductDataService } from 'src/app/services/product-data.service';
 })
 export class UpdateComponent implements OnInit {
 
+  id1!: number;
+  name1!: string;
+  description1!: string;
+  price1!: number;
+  stockQuantity1!: number;
+
   updateResponse: any;
 
   constructor(private _service: ProductDataService) { }

@@ -9,6 +9,7 @@ import { CreateComponent } from './components/create/create.component';
 import { UpdateComponent } from './components/update/update.component';
 import { FetchComponent } from './components/fetch/fetch.component';
 import { DeleteComponent } from './components/delete/delete.component';
+import { AppRoutingModule } from './routing.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DeleteComponent } from './components/delete/delete.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [ProductDataService],
   bootstrap: [AppComponent]
