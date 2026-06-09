@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.26.xsd">
+
+    <changeSet id="insert-sample-flights-csv" author="vibol">
+        <loadData tableName="FLIGHT" file="db/data/flights.csv">
+            <column name="ID" type="NUMERIC"/>
+            <column name="DATE_OF_DEPARTURE" type="DATE"/>
+            <column name="ESTIMATED_DEPARTURE_TIME" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="insert-sample-passengers-csv" author="vibol">
+        <loadData tableName="PASSENGER" file="db/data/passengers.csv">
+            <column name="ID" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="insert-sample-reservations-csv" author="vibol">
+        <loadData tableName="RESERVATION" file="db/data/reservations.csv">
+            <column name="ID" type="NUMERIC"/>
+            <column name="CHECKED_IN" type="BOOLEAN"/>
+            <column name="NUMBER_OF_BAGS" type="NUMERIC"/>
+            <column name="PASSENGER_ID" type="NUMERIC"/>
+            <column name="FLIGHT_ID" type="NUMERIC"/>
+            <column name="CREATED" type="TIMESTAMP"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

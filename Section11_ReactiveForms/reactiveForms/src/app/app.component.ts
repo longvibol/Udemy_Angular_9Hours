@@ -12,9 +12,13 @@ export class AppComponent implements OnInit {
   // Create object  
   public personForm!:FormGroup;
 
+  countries!: string[];
   ngOnInit(){
+
+      this.countries = ["USA", "Canada", "UK"];
+
     this.personForm = new FormGroup({
-      firstName: new FormControl("Vibol",[Validators.required,Validators.minLength(3), Validators.maxLength(10)]),
+      firstName: new FormControl("Vibol",[Validators.required,Validators.minLength(3), Validators.maxLength(5)]),
       lastName: new FormControl(),
       email: new FormControl(),
       address: new FormGroup({
@@ -26,8 +30,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+
+
   onSubmit(){
-    console.log(this.personForm.valid);
+    console.log(this.personForm.value);
   }
 
 }
