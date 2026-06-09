@@ -7,3 +7,236 @@ Form
 
 2- Create form 
 
+-FormGroup : ជាកន្លែងដែលយើងបង្កើតឈ្មោះ Object Model របស់យើង
+-FormControl: កន្លែងដែលយើង បង្កើត field នីមួយៗ ហើយ យើងអាចគ្រប់គ្រង វាបានដូច ជា validation, name or etc
+
+// Create object  
+public personForm!:FormGroup;
+
+--------------------------------------
+
+firstName: new FormControl("Vibol",[Validators.required,Validators.minLength(3), Validators.maxLength(10)]),
+
+
+Example: 
+
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+
+  // Create object  
+  public personForm!:FormGroup;
+
+  ngOnInit(){
+    this.personForm = new FormGroup({
+      firstName: new FormControl("Vibol",[Validators.required,Validators.minLength(3), Validators.maxLength(10)]),
+      lastName: new FormControl(),
+      email: new FormControl(),
+      address: new FormGroup({
+        street: new FormControl(),
+        city: new FormControl(),
+        country: new FormControl()
+      }),
+      gender: new FormControl()
+    });
+  }
+
+  onSubmit(){
+    console.log(this.personForm.valid);
+  }
+
+}
+
+
+-------------------------
+
+សំខាន់ ៖
+
+ដើម្បីធ្វើការ ប្រើប្រាស់ Form we need to import : ReactiveFormsModule in the app.module.ts 
+
+
+-----------------------
+
+In the HTML : 
+
+
+<div>
+
+	<form [formGroup]="personForm">
+	</from>
+
+</div>
+
+
+- [formGroup] វាជា directive and personForm is the object model that we create 
+
+Example to create one field from the model :
+
+    <div>
+      <label>Frist Name</label>
+      <input type="text" class="form-control" formControlName="firstName">
+    </div>
+
+- formControlName="firstName" យើងប្រើប្រាស់ formControlName : សម្រាប់ធ្វើការ binding from template to model 
+
+
+ចំនាំសម្រាប់ sub field form :
+
+    <div class="form-group" formGroupName="address">
+
+      <h4 class="display-5 text-center">Address</h4>
+      <div class="form-group">
+        <label>Street</label>
+        <input type="text" class="form-control" formControlName="street">
+      </div>
+
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" class="form-control" formControlName="city">
+      </div>
+
+      <div class="form-group">
+        <h4 class="display-6">Chose Country</h4>
+        <select class="form-control" formControlName="country">
+          <option value="USA">USA</option>
+          <option value="Canada">Canada</option>
+          <option value="UK">UK</option>
+        </select>
+      </div>
+
+    </div>
+
+- FormGroup : សម្រាប់ bind Object model 
+- formGroupName : យើងគិតដូចជា container ដែលមាន sub filed នៅក្នុងនឹង
+
+
+-----------------------------------------------------------------------
+
+សម្រាប់ការ submit form យើងត្រូវធ្វើការ create form button 
+
+    <div>
+      <input type="submit" class="btn btn-success" value="Submit">
+    </div>
+
+- type = 'submit'
+- value = 'Submit' 
+
+យើងសម្រាប់ form យើងត្រូវដាក់ (ngSubmit)="onSubmit()"
+
+
+---------------------------------------------------------------------
+
+HTML
+
+<h1 class="display-4 text-center">Reactive Forms</h1>
+
+<div class="container">
+  <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+
+    <div>
+      <label>Frist Name</label>
+      <input type="text" class="form-control" formControlName="firstName">
+    </div>
+
+    <div>
+      <label>Last Name</label>
+      <input type="text" class="form-control" formControlName="lastName">
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input type="text" class="form-control" formControlName="email">
+    </div>
+
+    <div>
+      <label>Gender</label><br>
+      <input type="radio" value="male" formControlName="gender">Male
+      <input type="radio" value="female" formControlName="gender">Female
+    </div>
+
+    <div class="form-group" formGroupName="address">
+      <h4 class="display-5 text-center">Address</h4>
+      <div class="form-group">
+        <label>Street</label>
+        <input type="text" class="form-control" formControlName="street">
+      </div>
+
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" class="form-control" formControlName="city">
+      </div>
+
+      <div class="form-group">
+        <h4 class="display-6">Chose Country</h4>
+        <select class="form-control" formControlName="country">
+          <option value="USA">USA</option>
+          <option value="Canada">Canada</option>
+          <option value="UK">UK</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <input type="submit" class="btn btn-success" value="Submit">
+    </div>
+
+  </form>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

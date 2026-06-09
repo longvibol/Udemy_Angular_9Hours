@@ -4,9 +4,21 @@
   <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
 
     <div>
-      <label>Frist Name</label>
+      <label>First Name</label>
       <input type="text" class="form-control" formControlName="firstName">
     </div>
+
+    <!-- Validation Errors -->
+    <div class="alert alert-danger" *ngIf="personForm.controls['firstName'].hasError('required')">
+      First Name Can Not Be Empty!
+    </div>
+    <div class="alert alert-danger" *ngIf="personForm.controls['firstName'].hasError('minlength')">
+      First Name Must Be At Least 2 Characters Long!
+    </div>
+    <div class="alert alert-danger" *ngIf="personForm.controls['firstName'].hasError('maxlength')">
+      Max First Name Must Be At Most 100 Characters Long!
+    </div>
+
 
     <div>
       <label>Last Name</label>
@@ -39,9 +51,7 @@
       <div class="form-group">
         <h4 class="display-6">Chose Country</h4>
         <select class="form-control" formControlName="country">
-          <option value="USA">USA</option>
-          <option value="Canada">Canada</option>
-          <option value="UK">UK</option>
+          <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
         </select>
       </div>
     </div>

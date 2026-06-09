@@ -1,0 +1,143 @@
+Template Driven Forms:
+
+- We use the directive to binding from the html template to the model 
+==> then we will driven the model from the ts 
+
+- we just add the form module to the module configuration ==> we will get the
+
+ngForm : Object (use in HTML template) internaly FormGroup 
+
+ចឹងដើម្បីធ្វើការ ប្រើប្រាស់បានយើងត្រូវការ 
+
+Ex:
+
+<input ngModel name="fName"
+
+- ngModel : is the directive that create FormControl ដែលវាបង្កើត object for the specific type of the input 
+
+- name : is mapting to the key or the model fName (fName is the field name) 
+
+
+--------------------
+
+1- HTML 
+
+<div>
+  <form #personForm="ngForm" (ngSubmit)="onSubmit(personForm.value)">
+    <div>
+      <label>First Name</label>
+      <input type="text" name="firstName" [(ngModel)]="firstName">
+    </div>
+
+    <div>
+      <label>Last Name</label>
+      <input type="text" name="lastName" [(ngModel)]="lastName">
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input type="text" name="email" [(ngModel)]="email">
+    </div>
+
+    <div>
+      <label>Gender</label><br>
+      <input type="radio" name="gender" value="male" [(ngModel)]="gender">Male
+      <input type="radio" name="gender" value="female" [(ngModel)]="gender">Female
+    </div>
+
+    <div ngModelGroup="address">
+
+      <div>
+        <label>Street</label><br>
+        <input type="text" name="street" [(ngModel)]="street">Street      
+      </div>
+
+      <div>
+        <label>City</label><br>
+        <input type="text" name="city" [(ngModel)]="city">City      
+      </div>
+
+      <div>
+        <label>Country</label><br>
+        <select name="country" [(ngModel)]="country">
+          <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div>
+      <button type="submit" value="Submit">Submit</button>
+    </div>
+
+  </form>
+</div>
+
+2- TS
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+
+  public firstName: string = 'vibol';
+  public lastName: string='long';
+  public email!: string; 
+  public gender: string='male';
+  public street!: string;
+  public city!: string;
+  public country!: string;
+
+  countries = ['India', 'USA', 'UK', 'Germany', 'France'];
+
+  public onSubmit(data: any) {
+    console.log('Form submitted!', data);
+  }
+}
+
+
+3- app.module.ts 
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
