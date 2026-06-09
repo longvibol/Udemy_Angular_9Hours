@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.26.xsd">
+
+    <changeSet id="1-create-flight-table" author="vibol">
+        <createTable tableName="FLIGHT">
+            <column name="ID" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="FLIGHT_NUMBER" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATING_AIRLINES" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPARTURE_CITY" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ARRIVAL_CITY" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATE_OF_DEPARTURE" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ESTIMATED_DEPARTURE_TIME" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2-create-passenger-table" author="vibol">
+        <createTable tableName="PASSENGER">
+            <column name="ID" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR(256)"/>
+            <column name="LAST_NAME" type="VARCHAR(256)"/>
+            <column name="MIDDLE_NAME" type="VARCHAR(256)"/>
+            <column name="EMAIL" type="VARCHAR(50)"/>
+            <column name="PHONE" type="VARCHAR(10)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3-create-reservation-table" author="vibol">
+        <createTable tableName="RESERVATION">
+            <column name="ID" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="CHECKED_IN" type="BOOLEAN"/>
+            <column name="NUMBER_OF_BAGS" type="INTEGER"/>
+            <column name="PASSENGER_ID" type="INTEGER">
+                <constraints foreignKeyName="fk_reservation_passenger" referencedTableName="PASSENGER" referencedColumnNames="ID" deleteCascade="true"/>
+            </column>
+            <column name="FLIGHT_ID" type="INTEGER">
+                <constraints foreignKeyName="fk_reservation_flight" referencedTableName="FLIGHT" referencedColumnNames="ID"/>
+            </column>
+            <column name="CREATED" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <include file="db/changelog/db.changelog-data.xml" relativeToChangelogFile="false"/>
+
+</databaseChangeLog>
