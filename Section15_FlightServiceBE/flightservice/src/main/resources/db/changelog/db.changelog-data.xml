@@ -5,7 +5,8 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.26.xsd">
 
-    <changeSet id="insert-sample-flights-csv" author="vibol">
+    <changeSet id="insert-sample-flights-csv" author="vibol" runOnChange="true">
+        <delete tableName="FLIGHT"/>
         <loadData tableName="FLIGHT" file="db/data/flights.csv">
             <column name="ID" type="NUMERIC"/>
             <column name="DATE_OF_DEPARTURE" type="DATE"/>
@@ -13,13 +14,15 @@
         </loadData>
     </changeSet>
 
-    <changeSet id="insert-sample-passengers-csv" author="vibol">
+    <changeSet id="insert-sample-passengers-csv" author="vibol" runOnChange="true">
+        <delete tableName="PASSENGER"/>
         <loadData tableName="PASSENGER" file="db/data/passengers.csv">
             <column name="ID" type="NUMERIC"/>
         </loadData>
     </changeSet>
 
-    <changeSet id="insert-sample-reservations-csv" author="vibol">
+    <changeSet id="insert-sample-reservations-csv" author="vibol" runOnChange="true">
+        <delete tableName="RESERVATION"/>
         <loadData tableName="RESERVATION" file="db/data/reservations.csv">
             <column name="ID" type="NUMERIC"/>
             <column name="CHECKED_IN" type="BOOLEAN"/>

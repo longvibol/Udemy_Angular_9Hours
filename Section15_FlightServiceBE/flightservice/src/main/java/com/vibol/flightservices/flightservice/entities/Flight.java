@@ -1,21 +1,19 @@
 package com.vibol.flightservices.flightservice.entities;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Flight extends AbstractEntity{
+public class Flight extends AbstractEntity {
 	
 	private String flightNumber;
 	private String operatingAirlines;
 	private String departureCity;
 	private String arrivalCity;
-	private Date dateOfDeparture;
-	private Timestamp estimatedDepartureTime;
+	private LocalDate dateOfDeparture; // Changed to LocalDate
+	private LocalDateTime estimatedDepartureTime; // Changed to LocalDateTime
 	
-
 	public String getFlightNumber() {
 		return flightNumber;
 	}
@@ -40,17 +38,16 @@ public class Flight extends AbstractEntity{
 	public void setArrivalCity(String arrivalCity) {
 		this.arrivalCity = arrivalCity;
 	}
-	public Date getDateOfDeparture() {
+	public LocalDate getDateOfDeparture() {
 		return dateOfDeparture;
 	}
-	public void setDateOfDeparture(Date dateOfDeparture) {
+	public void setDateOfDeparture(LocalDate dateOfDeparture) {
 		this.dateOfDeparture = dateOfDeparture;
 	}
-	public Timestamp getEstimatedDepartureTime() {
+	public LocalDateTime getEstimatedDepartureTime() {
 		return estimatedDepartureTime;
 	}
-	public void setEstimatedDepartureTime(Timestamp estimatedDepartureTime) {
+	public void setEstimatedDepartureTime(LocalDateTime estimatedDepartureTime) {
 		this.estimatedDepartureTime = estimatedDepartureTime;
 	}
-
 }
