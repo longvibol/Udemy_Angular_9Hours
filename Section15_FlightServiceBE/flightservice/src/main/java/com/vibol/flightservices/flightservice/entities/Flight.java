@@ -11,8 +11,8 @@ public class Flight extends AbstractEntity {
 	private String operatingAirlines;
 	private String departureCity;
 	private String arrivalCity;
-	private LocalDate dateOfDeparture; // Changed to LocalDate
-	private LocalDateTime estimatedDepartureTime; // Changed to LocalDateTime
+	private LocalDate dateOfDeparture; 
+	private LocalDateTime estimatedDepartureTime; 
 	
 	public String getFlightNumber() {
 		return flightNumber;

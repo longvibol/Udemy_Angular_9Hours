@@ -1,0 +1,19 @@
+DELETE FROM passenger WHERE id =4
+
+DELETE FROM passenger 
+WHERE id >= 5;
+
+SELECT * FROM passenger
+
+
+INSERT INTO passenger (id, first_name, last_name, middle_name, email, phone) VALUES
+(4, 'Michael', 'Johnson', 'Edward', 'michael.j@example.com', '5552345678'),
+(5, 'Sarah', 'Williams', 'Marie', 'sarah.w@example.com', '5553456789'),
+(6, 'David', 'Brown', 'Allen', 'david.b@example.com', '5554567890'),
+(7, 'Emily', 'Davis', 'Grace', 'emily.d@example.com', '5555678901'),
+(8, 'James', 'Miller', 'Raymond', 'james.m@example.com', '5556789012'),
+(9, 'Jessica', 'Wilson', 'Lynn', 'jessica.w@example.com', '5557890123'),
+(10, 'Daniel', 'Moore', 'Thomas', 'daniel.m@example.com', '5558901234'),
+(11, 'Amanda', 'Taylor', 'Elizabeth', 'amanda.t@example.com', '5559012345'),
+(12, 'Robert', 'Anderson', 'Charles', 'robert.a@example.com', '5550123456'),
+(13, 'Megan', 'Thomas', 'Rose', 'megan.t@example.com', '5551234567');

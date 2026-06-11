@@ -1,10 +1,8 @@
 package com.vibol.flightservices.integration;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vibol.flightservices.dto.CreateReservationRequest;
@@ -30,22 +27,26 @@ import jakarta.transaction.Transactional;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/reservations") 
+@RequestMapping("/api/reservations")
 public class ReservationRestController {
 	
-	@Autowired
-	FlightRepository flightRepository;
+	private final FlightRepository flightRepository;
+	private final PassengerRepository passengerRepository;
+	private final ReservationRepository reservationRepository;
 	
-	@Autowired
-	PassengerRepository passengerRepository;
+	// Constructor Injection
+	public ReservationRestController(FlightRepository flightRepository, 
+									 PassengerRepository passengerRepository, 
+									 ReservationRepository reservationRepository) {
+		this.flightRepository = flightRepository;
+		this.passengerRepository = passengerRepository;
+		this.reservationRepository = reservationRepository;
+	}
 	
-	@Autowired
-	ReservationRepository reservationRepository;
-	
-	// --- CREATE ---
+	// 1. CREATE
 	@PostMapping
 	@Transactional
-	public Reservation saveReservation(@RequestBody CreateReservationRequest request) {
+	public ResponseEntity<Reservation> saveReservation(@RequestBody CreateReservationRequest request) {
 		Flight flight = flightRepository.findById(request.getFlightId())
 				.orElseThrow(() -> new RuntimeException("Flight not found"));
 				
@@ -64,26 +65,28 @@ public class ReservationRestController {
 		reservation.setCheckedIn(false);
 		reservation.setNumberOfBags(1);
 		
-		return reservationRepository.save(reservation);
+		Reservation savedReservation = reservationRepository.save(reservation);
+		return new ResponseEntity<>(savedReservation, HttpStatus.CREATED);
 	}
 	
-	// --- READ ALL ---
+	// 2. READ ALL
 	@GetMapping
-	public List<Reservation> findAllReservations() {
-		return reservationRepository.findAll();
+	public ResponseEntity<List<Reservation>> findAllReservations() {
+		List<Reservation> reservations = reservationRepository.findAll();
+		return ResponseEntity.ok(reservations);
 	}
 	
-	// --- READ BY ID ---
+	// 3. READ ONE BY ID
 	@GetMapping("/{id}")
-	public ResponseEntity<Reservation> findReservation(@PathVariable int id) {
+	public ResponseEntity<Reservation> findReservationById(@PathVariable Integer id) {
 		return reservationRepository.findById(id)
 				.map(ResponseEntity::ok)
-				.orElse(ResponseEntity.notFound().build());
+				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
 	
-	// --- UPDATE ---
+	// 4. UPDATE
 	@PutMapping("/{id}")
-	public ResponseEntity<Reservation> updateReservation(@PathVariable int id, @RequestBody UpdateReservationRequest request) {
+	public ResponseEntity<Reservation> updateReservation(@PathVariable Integer id, @RequestBody UpdateReservationRequest request) {
 		return reservationRepository.findById(id)
 				.map(reservation -> {
 					reservation.setNumberOfBags(request.getNumberOfBags());
@@ -91,35 +94,17 @@ public class ReservationRestController {
 					Reservation updated = reservationRepository.save(reservation);
 					return ResponseEntity.ok(updated);
 				})
-				.orElse(ResponseEntity.notFound().build());
+				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
 	
-	// --- DELETE ---
+	// 5. DELETE
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteReservation(@PathVariable int id) {
+	public ResponseEntity<Void> deleteReservation(@PathVariable Integer id) {
 		return reservationRepository.findById(id)
 				.map(reservation -> {
 					reservationRepository.delete(reservation);
 					return ResponseEntity.noContent().<Void>build();
 				})
-				.orElse(ResponseEntity.notFound().build());
-	}
-	
-
-	// --- OTHER ENDPOINTS (FLIGHTS) ---
-		@GetMapping("/flights")
-		public List<Flight> findFlights(
-		        @RequestParam(required = false) String from,
-		        @RequestParam(required = false) String to,
-		        @RequestParam(required = false)
-		        @DateTimeFormat(pattern = "MM-dd-yyyy") LocalDate departureDate) {
-
-		    return flightRepository.findFlights(from, to, departureDate);
-		}
-	
-	@PostMapping("/addflight")
-	public String addFlight(@RequestBody Flight flight) {
-		flightRepository.save(flight);
-		return "Add Flight Successful";
+				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
 }
