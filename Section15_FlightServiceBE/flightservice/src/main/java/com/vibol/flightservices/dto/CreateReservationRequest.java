@@ -9,9 +9,6 @@ public class CreateReservationRequest {
 	private String passengerEmail;
 	private String passengerPhone;
 	private String cardNumber;
-	private String expirationDate;
-	private String securityCode;
-	
 	
 	public int getFlightId() {
 		return flightId;
@@ -67,5 +64,7 @@ public class CreateReservationRequest {
 	public void setSecurityCode(String securityCode) {
 		this.securityCode = securityCode;
 	}
-
+	private String expirationDate;
+	private String securityCode;
+	
 }

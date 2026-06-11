@@ -1,0 +1,62 @@
+1- install node 
+
+>> node -v 
+
+2- install Angular cli
+
+>>npm install -g @angular/cli@11.1.2
+
+
+node version v12.19.0
+
+angular cli 11.1.2
+
+3- start project 
+
+where it start from the bootstrap:
+
+-app.modules.ts កន្លែងដែលវាចាប់ផ្តើម ត្រង់ @NgModule (គេហៅថា decorator) 
+
+ក្នុងនឹងវាមាន Object របស់វា 
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ProductComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [ProductComponent]
+})
+
+ពេលវាបង្កើត component គឺវា Add new component to the declarations 
+
+កន្លែងដែល វាចាប់ផ្តើម គេហៅថា bootstrap (run app) ចឹងបើយើងចឹងអោយវា render component មួយណាត្រូវដាក់វាចូលកន្លែងនឹង
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: product-service
+    name: flight-reservation-service
 
   datasource:
     url: jdbc:postgresql://localhost:5432/reservation_db
@@ -22,3 +22,12 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
+
+# Swagger UI & OpenAPI Configurations
+springdoc:
+  api-docs:
+    path: /api-docs            # Access raw JSON documentation at http://localhost:8080/api-docs
+  swagger-ui:
+    path: /swagger-ui.html     # Access UI documentation at http://localhost:8080/swagger-ui.html
+    operations-sorter: method  # Sorts the endpoints inside the UI by HTTP method (GET, POST, etc.)
+    tags-sorter: alpha         # Sorts your Controllers alphabetically
