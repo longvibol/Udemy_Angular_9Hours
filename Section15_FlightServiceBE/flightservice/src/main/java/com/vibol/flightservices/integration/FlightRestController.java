@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vibol.flightservices.dto.FlightSearchResponse;
 import com.vibol.flightservices.flightservice.entities.Flight;
 import com.vibol.flightservices.flightservice.repository.FlightRepository;
 
@@ -56,13 +57,41 @@ public class FlightRestController {
 
 	// 4. SEARCH FLIGHTS
 	@GetMapping("/search")
-	public List<Flight> findFlights(
+	public ResponseEntity<FlightSearchResponse> findFlights(
 	        @RequestParam(required = false) String from,
 	        @RequestParam(required = false) String to,
-	        @RequestParam(required = false)
-	        @DateTimeFormat(pattern = "MM-dd-yyyy") LocalDate departureDate) {
+	        @RequestParam(required = false) 
+	        @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate departureDate) {
 
-	    return flightRepository.findFlights(from, to, departureDate);
+	    List<Flight> flights = flightRepository.findFlights(from, to, departureDate);
+
+	    // If flights are found, return them with a success message
+	    if (!flights.isEmpty()) {
+	        return ResponseEntity.ok(new FlightSearchResponse("Flights found successfully.", flights));
+	    }
+
+	    // If no flights are found, construct a precise error message based on input
+	    StringBuilder messageBuilder = new StringBuilder("No flights found");
+	    java.util.List<String> criteria = new java.util.ArrayList<>();
+
+	    if (from != null && !from.trim().isEmpty()) {
+	        criteria.add("departing from '" + from + "'");
+	    }
+	    if (to != null && !to.trim().isEmpty()) {
+	        criteria.add("arriving at '" + to + "'");
+	    }
+	    if (departureDate != null) {
+	        criteria.add("on date " + departureDate);
+	    }
+
+	    if (!criteria.isEmpty()) {
+	        messageBuilder.append(" matching: ").append(String.join(", ", criteria));
+	    } else {
+	        messageBuilder.append(" in the database.");
+	    }
+	    messageBuilder.append(".");
+
+	    return ResponseEntity.ok(new FlightSearchResponse(messageBuilder.toString(), flights));
 	}
 
 

@@ -14,9 +14,9 @@ public interface FlightRepository extends JpaRepository<Flight, Integer> {
 	@Query(value = """
             SELECT *
             FROM flight
-            WHERE (:from IS NULL OR departure_city = CAST(:from AS text))
-              AND (:to IS NULL OR arrival_city = CAST(:to AS text))
-              AND (:departureDate IS NULL OR date_of_departure = CAST(:departureDate AS date))
+            WHERE (CAST(:from AS text) IS NULL OR departure_city = CAST(:from AS text))
+              AND (CAST(:to AS text) IS NULL OR arrival_city = CAST(:to AS text))
+              AND (CAST(:departureDate AS date) IS NULL OR date_of_departure = CAST(:departureDate AS date))
             """, nativeQuery = true)
     List<Flight> findFlights(
             @Param("from") String from,
