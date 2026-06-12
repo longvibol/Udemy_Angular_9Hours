@@ -4,26 +4,23 @@ import { FindFlightsComponent } from './components/find-flights/find-flights.com
 import { DisplayFlightsComponent } from './components/display-flights/display-flights.component';
 import { PassengerDetailsComponent } from './components/passenger-details/passenger-details.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { FlightsComponent } from './components/flights/flights.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' },
-  {
-    path: 'findFlight',
+  // Redirects safely to 'findFlight' on application load
+  { path: '', redirectTo: 'findFlight', pathMatch: 'full' },
+  
+  { path: 'flights', component: FlightsComponent },
+  
+  { 
+    path: 'findFlight', 
     component: FindFlightsComponent,
   },
 
-  {
-    path: 'displayFlights',
-    component: DisplayFlightsComponent,
-  },
-  {
-    path: 'passengerDetails/:id',
-    component: PassengerDetailsComponent,
-  },
-  {
-    path: 'confirm/:id',
-    component: ConfirmComponent,
-  },
+  {path:'displayFlights', component: DisplayFlightsComponent},
+  
+  { path: 'passengerDetails/:id', component: PassengerDetailsComponent },
+  { path: 'confirm/:id', component: ConfirmComponent },
 ];
 
 @NgModule({

@@ -18,18 +18,17 @@ export class FindFlightsComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this._flightService.getFlights(this.criteria).subscribe(
-      (res: any) => {
-        // Assign the array of flights from your API payload to the service data
-        this._flightService.data = res.flights;    
-        
-        // Navigate to the list component
-        this._router.navigate(['/displayFlights']);
-      },
-      (error) => {
-        console.error("Error fetching flights", error);
-      }
-    );
-  }
+  this._flightService.getFlights(this.criteria).subscribe(
+    (res: any) => {
+      this._flightService.data = res;    
+      console.log(res);
+      // Update this line to target the child route correctly
+      this._router.navigate(['/displayFlights']);
+    },
+    (error) => {
+      console.error("Error fetching flights", error);
+    }
+  );
+}
 
 }

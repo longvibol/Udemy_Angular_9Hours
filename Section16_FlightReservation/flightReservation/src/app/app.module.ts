@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReservationService } from './services/reservation.service';
 import { FlightService } from './services/flight.service';
+import { FlightsComponent } from './components/flights/flights.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FlightService } from './services/flight.service';
     FindFlightsComponent,
     DisplayFlightsComponent,
     PassengerDetailsComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    FlightsComponent,
   ],
   imports: [
     BrowserModule,

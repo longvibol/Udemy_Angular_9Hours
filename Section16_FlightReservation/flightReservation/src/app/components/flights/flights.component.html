@@ -1,0 +1,87 @@
+<div class="flights-container">
+  <div class="dashboard-header">
+    <div>
+      <h2>Flight Schedules</h2>
+      <p class="subtitle">Real-time overview of all operating flights</p>
+    </div>
+
+    <button class="btn-refresh" (click)="loadAllFlights()" [disabled]="isLoading">
+      <span *ngIf="!isLoading">🔄 Refresh Board</span>
+      <span *ngIf="isLoading">Loading...</span>
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="state-message loading">
+    <div class="spinner"></div>
+    <p>Retrieving flight data...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="state-message error">
+    <p>⚠️ {{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="!isLoading && !errorMessage" class="table-card">
+    <div class="table-responsive">
+      <table class="flights-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Flight</th>
+            <th>Airline</th>
+            <th>Route</th>
+            <th>Departure Date</th>
+            <th>Est. Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flight of pagedFlights">
+            <td class="text-muted">#{{ flight.id }}</td>
+            <td><strong class="flight-no">{{ flight.flightNumber }}</strong></td>
+            <td>
+              <span class="airline-badge" [attr.data-airline]="flight.operatingAirlines">
+                {{ flight.operatingAirlines }}
+              </span>
+            </td>
+            <td>
+              <div class="route-container">
+                <span class="route-city">{{ flight.departureCity }}</span> 
+                <span class="route-arrow">➔</span> 
+                <span class="route-city">{{ flight.arrivalCity }}</span>
+              </div>
+            </td>
+            <td>{{ flight.dateOfDeparture | date:'mediumDate' }}</td>
+            <td><span class="time-display">{{ flight.estimatedDepartureTime | date:'shortTime' }}</span></td>
+          </tr>
+          
+          <tr *ngIf="pagedFlights.length === 0">
+            <td colspan="6" class="no-data">No flights available at this time.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-footer" *ngIf="allFlights.length > 0">
+      <div class="pagination-info">
+        Showing <span>{{ startItemIndex }}</span> to <span>{{ endItemIndex }}</span> of <span>{{ totalItems }}</span> entries
+      </div>
+      <div class="pagination-controls">
+        <button class="btn-page" (click)="prevPage()" [disabled]="currentPage === 1">
+          &laquo; Previous
+        </button>
+        
+        <ng-container *ngFor="let dummy of [].constructor(totalPages); let i = index">
+          <button 
+            class="btn-page-number" 
+            [class.active]="currentPage === (i + 1)"
+            (click)="goToPage(i + 1)">
+            {{ i + 1 }}
+          </button>
+        </ng-container>
+
+        <button class="btn-page" (click)="nextPage()" [disabled]="currentPage === totalPages">
+          Next &raquo;
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,32 +1,24 @@
-<html>
-  <head>
-    <title>Find Flights</title>
-  </head>
-  <body>
-    <h2>Find Flights:</h2>
+<h2>Find Flights:</h2>
 
-    <form #findFlightsForm="ngForm" (ngSubmit)="onSubmit()">
-      <div>
-        <label>From:</label>
-        <input type="text" [(ngModel)]="criteria.from" name="from" />
-      </div>
+<form #findFlightsForm="ngForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>From:</label>
+    <input type="text" [(ngModel)]="criteria.from" name="from" />
+  </div>
 
-      <div>
-        <label>To:</label>
-        <input type="text" [(ngModel)]="criteria.to" name="to" />
-      </div>
+  <div>
+    <label>To:</label>
+    <input type="text" [(ngModel)]="criteria.to" name="to" />
+  </div>
 
-      <div>
-        <label>Departure Date:</label>
-        <input
-          type="text"
-          [(ngModel)]="criteria.departureDate"
-          name="departureDate"
-        />
-      </div>
+  <div>
+    <label>Departure Date:</label>
+    <input type="text" [(ngModel)]="criteria.departureDate" name="departureDate" />
+  </div>
 
-      <button type="submit">Search</button>
-    </form>
-  </body>
-</html>
-<router-outlet></router-outlet>
+  <button type="submit">Search</button>
+</form>
+
+<div style="margin-top: 20px;">
+  <router-outlet></router-outlet>
+</div>
