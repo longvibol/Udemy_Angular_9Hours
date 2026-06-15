@@ -13,12 +13,11 @@ export class DisplayFlightsComponent implements OnInit {
 
   constructor(private _flightService: FlightService, private _router: Router) { }
 
- ngOnInit(): void {
+  ngOnInit(): void {
+    this.data = this._flightService.data;
+  }
 
-  this.data = this._flightService.data;
-}
-
-  public onSelect(id: number): any {
+  public onSelect(id: number): void {
     console.log('Selected Flight ID:', id);   
     this._router.navigate(['/passengerDetails/'+id])
   }

@@ -10,14 +10,13 @@ export class FlightService {
 
   flightUrl: string = "http://localhost:8080/api/flights/search";
 
+  // This will store the raw flights array for DisplayFlightsComponent
   data: any[] = [];
 
   constructor(private _httpClient: HttpClient) { }
 
   // 1. Returns the Observable directly so FindFlightsComponent can subscribe to it
   public getFlights(criteria: Criteria): Observable<any> {
-    // http://localhost:8080/api/flights/search?from=AUS&to=NYC&departureDate=2026-09-05
-
     const url = `${this.flightUrl}?from=${criteria.from}&to=${criteria.to}&departureDate=${criteria.departureDate}`;
     return this._httpClient.get<any>(url);
   }
@@ -26,12 +25,5 @@ export class FlightService {
   public getFlight(id: number): Observable<any> {
     return this._httpClient.get<any>("http://localhost:8080/api/flights/" + id);
   }
-
-  // 3. get All the flgith 
-  public getAllFlight(): Observable<any> {
-    return this._httpClient.get<any>("http://localhost:8080/api/flights");
-  }
-
-
 
 }
