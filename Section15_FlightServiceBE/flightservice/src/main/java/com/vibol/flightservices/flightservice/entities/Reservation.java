@@ -1,18 +1,23 @@
 package com.vibol.flightservices.flightservice.entities;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
-public class Reservation extends AbstractEntity{
+public class Reservation extends AbstractEntity {
 	
 	private Boolean checkedIn;
 	private int numberOfBags;
 	
-	@OneToOne
+	// Many reservations can be created by the same passenger over time
+	@ManyToOne
+	@JoinColumn(name = "passenger_id", nullable = false)
 	private Passenger passenger;
 	
-	@OneToOne
+	// Many reservations can be mapped to the same aircraft/flight instance
+	@ManyToOne
+	@JoinColumn(name = "flight_id", nullable = false)
 	private Flight flight;	
 	
 	public Passenger getPassenger() {
@@ -39,5 +44,4 @@ public class Reservation extends AbstractEntity{
 	public void setNumberOfBags(int numberOfBags) {
 		this.numberOfBags = numberOfBags;
 	}
-
 }

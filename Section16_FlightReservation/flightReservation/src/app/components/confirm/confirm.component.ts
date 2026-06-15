@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FlightService } from 'src/app/services/flight.service';
+import { ReservationService } from 'src/app/services/reservation.service';
+
 
 @Component({
   selector: 'app-confirm',
@@ -7,11 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmComponent implements OnInit {
 
-  reservationId: number = 12345; // Mock reservation ID (Replace with actual data from backend)
+  reservationId!: number;
 
-  constructor() { }
+    constructor(private _flightService: FlightService,
+    private _reservationService:ReservationService
+    ,    
+    private _router: Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.reservationId = Number.parseInt(this.route.snapshot.paramMap.get("id")!);
   }
 
 }

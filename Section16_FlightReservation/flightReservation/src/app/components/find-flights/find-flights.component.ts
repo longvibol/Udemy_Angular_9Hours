@@ -22,7 +22,7 @@ export class FindFlightsComponent implements OnInit {
       (res: any) => {
         // Assign the array of flights from your API payload to the service data
         this._flightService.data = res.flights;    
-        
+        console.log(res)
         // Navigate to the list component
         this._router.navigate(['/displayFlights']);
       },

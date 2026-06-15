@@ -1,41 +1,31 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import { Criteria } from '../model/criteria';
+import { HttpClient } from "@angular/common/http";
 import { Reservation } from '../model/reservation';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservationService {
 
-  reservationUrl:string = "http://localhost:8080/api/reservations";
-
-  data:any;
+  // Moved to private to follow best practices
+  private reservationUrl: string = "http://localhost:8080/api/reservations";
 
   constructor(private _httpClient: HttpClient) { }
 
-  public getAllReservation():any {
-    return this._httpClient.get(this.reservationUrl).subscribe(
-      (data) => {
-        console.log(data);
-      }
-    );
+  // FIX: Return the Observable directly so your components can subscribe to it
+  public getAllReservation(): Observable<any> {
+    return this._httpClient.get<any>(this.reservationUrl);
   }
 
-  public getReservationById(id:number):any {
-    return this._httpClient.get(this.reservationUrl+"/"+id).subscribe(
-      (data) => {
-        console.log(data);
-      }
-    );
+  // FIX: Return the Observable directly so your components can subscribe to it
+  public getReservationById(id: number): Observable<any> {
+    return this._httpClient.get<any>(`${this.reservationUrl}/${id}`);
   }
 
-  public saveReservation(reservation:Reservation):any {
-    return this._httpClient.post(this.reservationUrl, reservation).subscribe(
-      (data) => {
-        console.log(data);
-      }
-    );
+  // This one was already correct!
+  public saveReservation(reservation: Reservation): Observable<any> {
+    return this._httpClient.post<any>(this.reservationUrl, reservation);
   }
 
 }

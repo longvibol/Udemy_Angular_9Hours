@@ -77,9 +77,11 @@ public class FlightRestController {
 	    if (from != null && !from.trim().isEmpty()) {
 	        criteria.add("departing from '" + from + "'");
 	    }
+	    
 	    if (to != null && !to.trim().isEmpty()) {
 	        criteria.add("arriving at '" + to + "'");
 	    }
+	    
 	    if (departureDate != null) {
 	        criteria.add("on date " + departureDate);
 	    }
@@ -92,8 +94,8 @@ public class FlightRestController {
 	    messageBuilder.append(".");
 
 	    return ResponseEntity.ok(new FlightSearchResponse(messageBuilder.toString(), flights));
+	    
 	}
-
 
 	// 5. UPDATE
 	@PutMapping("/{id}")
